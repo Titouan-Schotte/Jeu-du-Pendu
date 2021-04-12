@@ -19,8 +19,9 @@ print("==========================================\n>> #--" + color.CGREEN + "Bie
 def new_game():
 
     new_game = "y"
-    new_game = input("Nouvelle partie ??? (y/n) \n -> ")
+    new_game = input("Nouvelle partie ??? ("+color.CGREEN+"y"+color.CEND+"/"+color.CRED+"n"+color.CEND+") \n -> ")
     if new_game == "y":
+        print(color.CYELLOW+"\n\n\n\n\n\n\nNOUVELLE PARTIE "+color.CEND)
         return game()
     if new_game != "y":
         print("Merci d'avoir joué à mon jeu !!")
@@ -43,14 +44,14 @@ def game():
 
 
         # choix d'un mot au hasard dans un dictionnaire
-        randomnumber = random.randint(0 , 50)
+        randomnumber = random.randint(0 , 58)
         liste = ['protocole', 'injection', 'cryptographie', 'web', 'internet', 'http', 'cryptomonnaie', 'bitcoin',
                  'hacking', 'php', 'html', 'css', 'sql', 'java', 'javascript',
                  'ddos', 'bug-bounty', 'bug', 'c', 'c sharp', 'c++', 'ruby', 'python', 'dart', 'ethereum', 'script',
                  'snowden', 'constructeur', 'classe', 'variable', 'fonction',
                  'net', 'fishing', 'informatique', 'enigma', 'framework', 'heritage', 'liste', 'github', 'sniffer',
                  'tcp', 'udp', 'binaire', 'hexadecimal', 'donnee', 'metadonnee',
-                 'paquet', 'serveur', 'client', 'database']
+                 'paquet', 'serveur', 'client', 'database', 'ip', 'adresse mac', 'arp', 'pare feu', 'linux', 'kali linux', 'arch linux', 'thor'] #58 words
         solution = liste[randomnumber]
         #on définit le nombre de tentatives que l'utilisateur va avoir pour réussir :
         tentatives = 7
@@ -63,59 +64,81 @@ def game():
 
 
         for l in solution:
-          affichage = affichage + "_ "
+            if l != " ":
+                if l != "-":
+                    affichage +="_ "
+            if l == " ":
+                affichage += " "
+            if l == "-":
+                affichage += "- "
         print("\n"+ color.CITALIC + "=> Vous avez {} tentatives pour réussir ! GOOD LUCK ;)".format(tentatives_string) + color.CEND)
         while tentatives > 0:
-          print("\n"+ color.CUNDERLINE + "Mot à deviner :" + color.CEND + "", affichage)
-          proposition = input("proposez une lettre : \n")[0:1].lower()
+            print("\n"+ color.CUNDERLINE + "Mot à deviner :" + color.CEND + "", affichage)
+            n = 0
+            while n != 1:
+                proposition = input("proposez une lettre : \n").lower()
+                prop_lenght = len(proposition)
+                if prop_lenght <= 1:
+                    n += 1
+                if prop_lenght > 1:
+                    n = 0
+                    print(color.CRED + "Veuillez entrer une lettre uniquement !"+color.CEND)
 
-          if proposition in solution:
-              lettres_trouvees = lettres_trouvees + proposition
 
-              print('-> Bravo vous avez trouvé la lettre "{}" .'.format(proposition))
+            if proposition in solution:
+                lettres_trouvees = lettres_trouvees + proposition
+
+                print('-> Bravo vous avez trouvé la lettre "{}" .'.format(proposition))
 
         #différentes tentatives, -1 tentative à chaque essai !
-          else:
-            tentatives = tentatives - 1
+            else:
+                tentatives = tentatives - 1
 
-            print("-> Nope\n")
+                print("-> Nope\n")
 
-            if tentatives==0:
-                print(color.CGREY+" =========="+color.CEND+color.CYELLOW+"@"+color.CEND+color.CGREY+"= "+color.CEND)
-            if tentatives<=1:
-                print(color.CGREY  + " ||"+color.CEND+ color.CYELLOW + "/       |  "+color.CEND)
-            if tentatives<=2:
-                print(color.CGREY+" ||"+color.CEND+"        "+color.CBEIGE+"0"+color.CEND)
-            if tentatives<=3:
-                print(color.CGREY + " ||"+color.CEND+"       "+color.CBEIGE+"/|\   "+color.CEND)
-            if tentatives<=4:
-                print(color.CGREY+" ||"+color.CEND+"        "+color.CBEIGE+"|"+color.CEND)
-            if tentatives<=5:
-                print(color.CYELLOW+"/"+color.CEND+color.CGREY+"||"+color.CEND+"       "+color.CBEIGE+"/ \  "+color.CEND+"   ")
-            if tentatives<=6:
-                print(color.CGREY+"==============\n"+color.CEND)
-            if tentatives == 0:
-                print('Le mot était : ' + color.CBLUE + color.CBOLD + '{}'.format(solution) + color.CEND + color.CEND)
+                if tentatives==0:
+                    print(color.CGREY+" =========="+color.CEND+color.CYELLOW+"@"+color.CEND+color.CGREY+"= "+color.CEND)
+                if tentatives<=1:
+                    print(color.CGREY  + " ||"+color.CEND+ color.CYELLOW + "/       |  "+color.CEND)
+                if tentatives<=2:
+                    print(color.CGREY+" ||"+color.CEND+"        "+color.CBEIGE+"0"+color.CEND)
+                if tentatives<=3:
+                    print(color.CGREY + " ||"+color.CEND+"       "+color.CBEIGE+"/|\   "+color.CEND)
+                if tentatives<=4:
+                    print(color.CGREY+" ||"+color.CEND+"        "+color.CBEIGE+"|"+color.CEND)
+                if tentatives<=5:
+                    print(color.CYELLOW+"/"+color.CEND+color.CGREY+"||"+color.CEND+"       "+color.CBEIGE+"/ \  "+color.CEND+"   ")
+                if tentatives<=6:
+                    print(color.CGREY+"==============\n"+color.CEND)
+                if tentatives == 0:
+                    print('Le mot était : ' + color.CBLUE + color.CBOLD + '{}'.format(solution) + color.CEND + color.CEND)
 
-                print(color.CVIOLET + "=====================" + color.CEND)
-                print("    * " + color.CBACKRED + "GAME OVER" + color.CEND + " *    ")
-                print(color.CVIOLET + "=====================" + color.CEND)
-                new_game()
+                    print(color.CVIOLET + "=====================" + color.CEND)
+                    print("    * " + color.CBACKRED + "GAME OVER" + color.CEND + " *    ")
+                    print(color.CVIOLET + "=====================" + color.CEND)
+                    new_game()
 
 #Lettre trouvée
 
-          affichage = ""
-          for x in solution:
-              if x in lettres_trouvees:
-                  affichage += x + " "
-              else:
-                  affichage += "_ "
-#Win
-          if "_" not in affichage:
+            affichage = ""
+            for x in solution:
 
-            print(">>> Gagné! <<<")
-            print("Le mot était bien {}".format(solution))
-            new_game()
+                if x in lettres_trouvees:
+                    affichage += x + " "
+                else:
+                    if x == " ":
+                        affichage += " "
+                    elif x == "-":
+                        affichage += "- "
+                    else:
+                        affichage += "_ "
+#Win
+            if "_" not in affichage:
+                print("\n"+color.CGREENBG2 + "=====================" + color.CEND)
+                print("     * " + color.CYELLOW + "YOU WIN" + color.CEND + " *    ")
+                print(color.CGREENBG2 + "=====================" + color.CEND+"\n")
+                print('Le mot était : ' + color.CBLUE + color.CBOLD + '{}'.format(solution) + color.CEND + color.CEND)
+                new_game()
 #Lose
 
 
