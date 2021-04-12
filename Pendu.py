@@ -80,7 +80,7 @@ def game():
                 prop_lenght = len(proposition)
                 if prop_lenght <= 1:
                     n += 1
-                if prop_lenght > 1:
+                if prop_lenght > 1 or proposition.isdigit():
                     n = 0
                     print(color.CRED + "Veuillez entrer une lettre uniquement !"+color.CEND)
 
@@ -88,28 +88,28 @@ def game():
             if proposition in solution:
                 lettres_trouvees = lettres_trouvees + proposition
 
-                print('-> Bravo vous avez trouvé la lettre "{}" .'.format(proposition))
+                print(color.CSELECTED+'-> Bravo vous avez trouvé la lettre "{}" .'.format(proposition)+color.CEND)
 
         #différentes tentatives, -1 tentative à chaque essai !
             else:
                 tentatives = tentatives - 1
 
-                print("-> Nope\n")
+                print(color.CSELECTED+"-> Nope"+color.CEND+"\n")
 
                 if tentatives==0:
-                    print(color.CGREY+" =========="+color.CEND+color.CYELLOW+"@"+color.CEND+color.CGREY+"= "+color.CEND)
+                    print(" =========="+color.CYELLOW+"@"+color.CEND+color.CGREY+"= "+color.CEND)
                 if tentatives<=1:
-                    print(color.CGREY  + " ||"+color.CEND+ color.CYELLOW + "/       |  "+color.CEND)
+                    print(" ||"+ color.CYELLOW + "/       |  "+color.CEND)
                 if tentatives<=2:
-                    print(color.CGREY+" ||"+color.CEND+"        "+color.CBEIGE+"0"+color.CEND)
+                    print(" ||        "+color.CBEIGE+"0"+color.CEND)
                 if tentatives<=3:
-                    print(color.CGREY + " ||"+color.CEND+"       "+color.CBEIGE+"/|\   "+color.CEND)
+                    print(" ||       "+color.CBEIGE+"/|\   "+color.CEND)
                 if tentatives<=4:
-                    print(color.CGREY+" ||"+color.CEND+"        "+color.CBEIGE+"|"+color.CEND)
+                    print(" ||        "+color.CBEIGE+"|"+color.CEND)
                 if tentatives<=5:
-                    print(color.CYELLOW+"/"+color.CEND+color.CGREY+"||"+color.CEND+"       "+color.CBEIGE+"/ \  "+color.CEND+"   ")
+                    print(color.CYELLOW+"/"+color.CEND+"||       "+color.CBEIGE+"/ \  "+color.CEND+"   ")
                 if tentatives<=6:
-                    print(color.CGREY+"==============\n"+color.CEND)
+                    print("==============\n")
                 if tentatives == 0:
                     print('Le mot était : ' + color.CBLUE + color.CBOLD + '{}'.format(solution) + color.CEND + color.CEND)
 
