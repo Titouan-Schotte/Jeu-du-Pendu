@@ -46,7 +46,6 @@ def game():
         # choix d'un mot au hasard dans un dictionnaire
 
         solution = liste()
-        print(solution)
         #on définit le nombre de tentatives que l'utilisateur va avoir pour réussir :
         tentatives = 7
         affichage = ""
