@@ -1,4 +1,4 @@
-Pendu en Python
+# Pendu en Python
 
 
 Réalisé par Titouan Schotté avec l'IDE PyCharm
@@ -13,4 +13,7 @@ Ouvrez le dossier contenant les fichiers de l'application
 Executez le fichier Pendu.py
 Profitez !
 
--> de prochaines versions plus poussés arriveront très prochainement.
+
+# UPDATE : 
+
+Ajout d'un setup d'installation avec le jeu contenu à l'intérieur !!
